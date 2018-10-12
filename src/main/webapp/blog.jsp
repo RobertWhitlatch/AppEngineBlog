@@ -41,7 +41,7 @@
 <%
     }
 %>
- 
+ <!-- Good place for "All Posts" and "Write Post" -->
 <%
 	ObjectifyService.register(Blog.class);
 	List<Blog> blogs = ObjectifyService.ofy().load().type(Blog.class).list();
@@ -51,23 +51,21 @@
         <p id="empty_blog">There are no blog posts.</p>
         <%
     } else {
+    	int i = 0;
         for (Blog blog : blogs) {
-            pageContext.setAttribute("blog_content",
-                                     blog.getContent());
-            if (blog.getUser() == null) {
-                %>
-                <p>An anonymous, erroneous person wrote:</p>
-                <%
-            } else {
-                pageContext.setAttribute("blog_user",
-                                         blog.getUser());
-                %>
-                <p class="authors"><b>${fn:escapeXml(blog_user.nickname)}</b> wrote:</p>
-                <%
-            }
+        	i++;
+        	pageContext.setAttribute("blog_date", blog.getDate());
+            pageContext.setAttribute("blog_title", blog.getTitle());  	
+            pageContext.setAttribute("blog_content", blog.getContent());
+            pageContext.setAttribute("blog_user", blog.getUser());
             %>
-            <blockquote class="posts">${fn:escapeXml(blog_content)}</blockquote>
+            <p id="title"><b>${fn:escapeXml(blog_title)}</b></p>
+            <blockquote id="posts">${fn:escapeXml(blog_content)}</blockquote>
+            <p id="authors">Posted by ${fn:escapeXml(blog_user.nickname)} at ${fn:escapeXml(blog_date)}.</p>
             <%
+            if(i == 5){
+            	break;
+            }
         }
     }
 	
@@ -75,8 +73,11 @@
 %>
  
     <form action="/write" method="post">
+      <div><textarea name="title" rows="1" cols="60"></textarea></div>
       <div><textarea name="content" rows="3" cols="60"></textarea></div>
       <div><input type="submit" value="Post Blog" /></div>
+            <!-- "cancel installed, not hooked up -->
+      <!--<div><input type="cancel" value="Cancel"/></div>-->
       <input type="hidden" name="blogRecordName" value="${fn:escapeXml(blogRecordName)}"/>
     </form>
 <%

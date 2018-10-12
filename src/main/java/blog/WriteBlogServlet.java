@@ -33,7 +33,8 @@ public class WriteBlogServlet extends HttpServlet {
         // Guestbook should be limited to ~1/second.
         String blogRecordName = req.getParameter("blogRecordName");
         String content = req.getParameter("content");
-        Blog blog = new Blog(user, content, blogRecordName);
+        String title = req.getParameter("title");
+        Blog blog = new Blog(user, title, content, blogRecordName);
         ofy().save().entity(blog).now();
  
         resp.sendRedirect("/blog.jsp?blogRecordName=" + blogRecordName);

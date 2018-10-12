@@ -34,6 +34,7 @@ body {
 	top: 100px;
 	margin-left: 25%;
 	margin-right: 25%;
+	text-align: justify;
 }
 
 #banner p {
@@ -43,6 +44,7 @@ body {
 	width: 600px;
 	margin-left: 25%;
 	margin-right: 25%;
+	text-align: justify;
 }
 
 #log_button {
@@ -53,17 +55,26 @@ body {
 	margin-right: 45%;
 }
 
-#authors {
+#title {
 	margin-left: 15%;
 	margin-right: 15%;
 	text-align: left;
-	font: 20px arial, sans-serif;
-	padding: 10px;
+    font-size: 20px;
 }
 
 #posts {
 	display: block;
 	margin-left: 15%;
 	margin-right: 15%;
-	padding: 10px;
+	font-size: 20px;
+	text-align: justify;
+	border: 3px solid black;
+}
+
+#authors {
+	margin-left: 15%;
+	margin-right: 15%;
+	text-align: left;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
 }
