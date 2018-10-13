@@ -45,6 +45,16 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>subscribe</servlet-name>
+		<servlet-class>blog.SubscribeServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>subscribe</servlet-name>
+		<url-pattern>/subscribe</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>cron</servlet-name>
 		<servlet-class>blog.CronServlet</servlet-class>
 	</servlet>

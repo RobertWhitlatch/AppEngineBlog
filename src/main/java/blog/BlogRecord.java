@@ -12,5 +12,5 @@ public class BlogRecord {
     public BlogRecord(String name) {
         this.name = name;
     }
-    
+
 }

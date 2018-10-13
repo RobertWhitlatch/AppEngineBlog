@@ -36,11 +36,10 @@
     ObjectifyService.register(Subscriber.class);
     UserService userService = UserServiceFactory.getUserService();
     User user = userService.getCurrentUser();
-
 %>
 	<ul id="toolbar">
-		<li><a href="/" class="active">Home</a></li>
-		<li><a href="/all">View all Posts</a></li>
+		<li><a href="/">Home</a></li>
+		<li><a href="/all" class="active">View all Posts</a></li>
 		<li><a href="/writepost">Make a Post</a></li>
 <%
     if (user != null) {
@@ -75,12 +74,10 @@
 	Collections.sort(blogs);
 	if (blogs.isEmpty()) {
         %>
-        <p id="empty_blog">There are no blog posts. You should write one!</p>
+        <p id="empty_blog">There are no blog posts.</p>
         <%
     } else {
-    	int i = 0;
         for (Blog blog : blogs) {
-        	i++;
         	pageContext.setAttribute("blog_date", blog.getDate());
             pageContext.setAttribute("blog_title", blog.getTitle());  	
             pageContext.setAttribute("blog_content", blog.getContent());
@@ -91,14 +88,9 @@
             <blockquote id="posts">${fn:escapeXml(blog_content)}</blockquote>
             <p id="authors">Posted by ${fn:escapeXml(blog_user.nickname)} at ${fn:escapeXml(blog_date)}.</p>
             <%
-            if(i == 5){
-            	break;
-            }
         }
     }
-
 %>
-
 	</body>
 
 </html>

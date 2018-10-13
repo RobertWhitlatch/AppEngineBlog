@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+	<cron>
+		<url>/cron</url>
+		<description>daily blog update</description>
+		<schedule>every 24 hours</schedule>
+		<retry-parameters>
+			<min-backoff-seconds>2.5</min-backoff-seconds>
+			<max-doublings>5</max-doublings>
+		</retry-parameters>
+	</cron>
+</cronentries>
