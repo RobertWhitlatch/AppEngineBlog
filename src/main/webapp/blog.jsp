@@ -30,25 +30,31 @@
     pageContext.setAttribute("blogRecordName", blogRecordName);
     UserService userService = UserServiceFactory.getUserService();
     User user = userService.getCurrentUser();
+%>
+	<ul id="toolbar">
+		<li><a href="/" class="active">Home</a></li>
+		<li><a href="/all">View all Posts</a></li>
+		<li><a href="/writepost">Make a Post</a></li>
+<%
     if (user != null) {
       pageContext.setAttribute("user", user);
 %>
-<a id="log_button" href="<%= userService.createLogoutURL(request.getRequestURI()) %>">Sign Out</a>
+		<li style="float:right"><a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">Sign Out</a></li>
 <%
     } else {
 %>
-<a id="log_button" href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign In</a>
+		<li style="float:right"><a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign In</a></li>
 <%
     }
 %>
- <!-- Good place for "All Posts" and "Write Post" -->
+	</ul>
 <%
 	ObjectifyService.register(Blog.class);
 	List<Blog> blogs = ObjectifyService.ofy().load().type(Blog.class).list();
 	Collections.sort(blogs);
 	if (blogs.isEmpty()) {
         %>
-        <p id="empty_blog">There are no blog posts.</p>
+        <p id="empty_blog">There are no blog posts. You should write one!</p>
         <%
     } else {
     	int i = 0;
@@ -59,6 +65,7 @@
             pageContext.setAttribute("blog_content", blog.getContent());
             pageContext.setAttribute("blog_user", blog.getUser());
             %>
+            <hr>
             <p id="title"><b>${fn:escapeXml(blog_title)}</b></p>
             <blockquote id="posts">${fn:escapeXml(blog_content)}</blockquote>
             <p id="authors">Posted by ${fn:escapeXml(blog_user.nickname)} at ${fn:escapeXml(blog_date)}.</p>
@@ -68,25 +75,9 @@
             }
         }
     }
-	
-	if(user != null){
+
 %>
- 
-    <form action="/write" method="post">
-      <div><textarea name="title" rows="1" cols="60"></textarea></div>
-      <div><textarea name="content" rows="3" cols="60"></textarea></div>
-      <div><input type="submit" value="Post Blog" /></div>
-            <!-- "cancel installed, not hooked up -->
-      <!--<div><input type="cancel" value="Cancel"/></div>-->
-      <input type="hidden" name="blogRecordName" value="${fn:escapeXml(blogRecordName)}"/>
-    </form>
-<%
-	} else {
-%>
-		<p>Must be logged in to post.</p>
-<%
-	}
-%>
+
 	</body>
 
 </html>

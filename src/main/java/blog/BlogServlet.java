@@ -6,7 +6,7 @@ import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
-public class BlogServlet extends HttpServlet{
+public class BlogServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 

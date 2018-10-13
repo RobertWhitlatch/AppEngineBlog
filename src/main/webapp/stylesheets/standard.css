@@ -47,12 +47,45 @@ body {
 	text-align: justify;
 }
 
-#log_button {
-	font-size: 25px;
+#toolbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+#toolbar li {
+	float: left;
+}
+
+#toolbar a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#toolbar a:hover {
+    background-color: #111;
+} 
+
+.active {
+    background-color: #4CAF50;
+}
+
+#log {
+	float: right;
+}
+
+#empty_blog {
 	position: absolute;
-	top: 325px;
-	margin-left: 45%;
-	margin-right: 45%;
+	top: 500px;
+	margin-left: 30%;
+	margin-right: 30%;
+	text-align: center;
+    font-size: 30px;
 }
 
 #title {
@@ -77,4 +110,9 @@ body {
 	text-align: left;
     font-family: "Times New Roman", Times, serif;
     font-size: 20px;
+}
+
+#writing_headers {
+	padding: 5px;
+	font-size: 15px;
 }

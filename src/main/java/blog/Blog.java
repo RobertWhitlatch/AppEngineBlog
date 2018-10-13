@@ -17,6 +17,7 @@ public class Blog implements Comparable<Blog> {
     @Index String title;
     @Index String content;
     @Index Date date;
+    @Index Boolean subscribed;
     
     @SuppressWarnings("unused")
 	private Blog() {
@@ -41,6 +42,9 @@ public class Blog implements Comparable<Blog> {
     }
     public String getContent() {
         return content;
+    }
+    public Boolean getSubscribed() {
+    	return subscribed;
     }
 
     @Override
